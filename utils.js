@@ -54,7 +54,14 @@ export function createReactiveObject(obj) {
     },
   };
 
-  return new Proxy(obj, handler);
+  const reactiveObj = new Proxy(obj, handler);
+
+  reactiveObj.subscribe = (listener) => {
+    listeners.add(listener);
+    return () => listeners.delete(listener);
+  };
+
+  return reactiveObj;
 }
 
 export const computed = (fn) => {

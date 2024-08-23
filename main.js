@@ -22,3 +22,5 @@ const myObj = createReactiveObject({
 watch(myObj, (value) => {
   console.log(`From computed watcher! Current Value: ${JSON.stringify(value)}`);
 });
+
+myObj.va = "new value";
